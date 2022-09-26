@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="index.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/159a0ab838.js" crossorigin="anonymous"></script>
+  <title>Fyle</title>
+
+
+</head>
+
+<body onload="veiw()">
+
+  <div>
+    <div class="outer container-fluid">
+      <div class="row">
+        <div class="profile ">
+          <div class="image" placeholder="image">
+
+          </div>
+        </div>
+        <div class=" details ">
+
+
+          <div id="data">
+            <h5> </h5>
+          </div>
+
+          <div id="data1">
+            <p></p>
+          </div>
+          <p class="location"><i class="fa-solid fa-location-pin"></i>INDIA </p>
+        </div>
+      </div>
+      <div class="https"><i class="fa-solid fa-link"></i><a href="#">
+          <div id="data2"></div>
+        </a>
+      </div>
+
+      <div>
+        <div>
+          <ul style="list-style-type: none" id="paginated-list" aria-live="polite">
+            <li class="col-md-5 rep">
+              <div id="rep"></div>
+              <button class="btn btn-primary btt" id="lan">hello</button>
+            </li>
+            <li class="col-md-5 rep" style="float: right;margin-right: 20px;">
+              <div id="rep1"></div>
+              <button class="btn btn-primary btt" id="lan1">hello</button>
+            </li>
+            <li class="col-md-5 rep">
+              <div id="rep2"></div>
+              <button class="btn btn-success btt" id="lan2">hello</button>
+            </li>
+            <li class="col-md-5 rep" style="float: right; margin-right: 20px;">
+              <div id="rep3"></div>
+              <button class="btn btn-success btt" id="lan3">html</button>
+            </li>
+            <li class="col-md-5 rep">
+              <div id="rep4"></div>
+              <button class="btn btn-primary btt" id="lan4">hello</button>
+            </li>
+            <li class="col-md-5 rep" style="float: right;margin-right: 20px;">
+              <div id="rep5"></div>
+              <button class="btn btn-danger btt" id="lan5">hello</button>
+            </li>
+            <li class="col-md-5 rep">
+              <div id="rep6"></div>
+              <button class="btn btn-success btt" id="lan6">hello</button>
+            </li>
+            <li class="col-md-5 rep" style="float: right; margin-right: 20px;">
+              <div id="rep7"></div>
+              <button class="btn btn-success btt" id="lan7"></button>
+            </li>
+            <li class="col-md-5 rep">
+              <div id="rep8"></div>
+              <button class="btn btn-success btt" id="lan8"></button>
+            </li>
+            <li class="col-md-5 rep" style="float: right; margin-right: 20px;">
+              <div id="rep9"></div>
+              <button class="btn btn-success btt1" id="lan9">hello</button>
+            </li>
+           
+          </ul>
+          <br><br>
+          <div class="page">
+            <nav class="pagination-container">
+
+              <div id="pagination-numbers">
+                <a href="#" aria-label="Previous"></a>
+
+
+              </div>
+            </nav>
+            <footer>
+
+              <div class="pagination-container1" id="pagination-words">
+                <!-- <button class="btn btn-success">older</button>
+      <button class="btn btn-success">newer</button> -->
+
+
+              </div>
+            </footer>
+          </div>
+        </div>
+</body>
+
+<script>
+  const paginationNumbers = document.getElementById("pagination-numbers");
+  const paginationWords = document.getElementById("pagination-words");
+  const paginatedList = document.getElementById("paginated-list");
+  const listItems = paginatedList.querySelectorAll("li");
+
+  const paginationLimit = 6;
+  const pageCount = 9;
+  const paginationWordLimit = 6;
+  const pageWordCount = 9;
+  let currentPage = 1;
+  const wordCount = 2;
+
+  const appendPageNumber = (index) => {
+    const pageNumber = document.createElement("button");
+    pageNumber.className = "pagination-number";
+    pageNumber.innerHTML = index;
+    pageNumber.setAttribute("page-index", index);
+    pageNumber.setAttribute("aria-label", "Page " + index);
+
+    paginationNumbers.appendChild(pageNumber);
+  };
+  const getPaginationNumbers = () => {
+    for (let i = 1; i <= pageCount; i++) {
+      appendPageNumber(i);
+    }
+  };
+
+  const handleActivePageNumber = () => {
+    document.querySelectorAll(".pagination-number").forEach((button) => {
+      button.classList.remove("active");
+      const pageIndex = Number(button.getAttribute("page-index"));
+      if (pageIndex == currentPage) {
+        button.classList.add("active");
+      }
+    });
+  };
+
+
+
+
+
+  const setCurrentPage = (pageNum) => {
+    currentPage = pageNum;
+    handleActivePageNumber();
+
+    const prevRange = (pageNum - 1) * paginationLimit;
+    const currRange = pageNum * paginationLimit;
+
+    listItems.forEach((item, index) => {
+      item.classList.add("hidden");
+      if (index >= prevRange && index < currRange) {
+        item.classList.remove("hidden");
+      }
+    });
+  };
+
+  window.addEventListener("load", () => {
+    getPaginationNumbers();
+    setCurrentPage(1);
+
+    document.querySelectorAll(".pagination-number").forEach((button) => {
+      const pageIndex = Number(button.getAttribute("page-index"));
+
+      if (pageIndex) {
+        button.addEventListener("click", () => {
+          setCurrentPage(pageIndex);
+        });
+      }
+    });
+  });
+
+
+  function veiw() {
+    var data = document.getElementById("data")
+    var data1 = document.getElementById("data1")
+    var data2 = document.getElementById("data2")
+
+    var repost = document.getElementById("rep")
+    var repost1 = document.getElementById("rep1")
+    var repost2 = document.getElementById("rep2")
+    var repost3 = document.getElementById("rep3")
+    var repost4 = document.getElementById("rep4")
+    var repost5 = document.getElementById("rep5")
+    var repost6 = document.getElementById("rep6")
+    var repost7 = document.getElementById("rep7")
+    var repost8 = document.getElementById("rep8")
+    var repost9 = document.getElementById("rep9")
+
+
+
+    var language = document.getElementById("lan")
+    var language1 = document.getElementById("lan1")
+    var language2 = document.getElementById("lan2")
+    var language3 = document.getElementById("lan3")
+    var language4 = document.getElementById("lan4")
+    var language5 = document.getElementById("lan5")
+    var language6 = document.getElementById("lan6")
+    var language7 = document.getElementById("lan7")
+    var language8 = document.getElementById("lan8")
+    var language9 = document.getElementById("lan9")
+
+
+
+    var htmlString = ""
+    var htmlString1 = ""
+    var htmlString2 = ""
+
+    var repostring = ""
+    var repostring1 = ""
+    var repostring2 = ""
+    var repostring3 = ""
+    var repostring4 = ""
+    var repostring5 = ""
+    var repostring6 = ""
+    var repostring7 = ""
+    var repostring8 = ""
+    var repostring9 = ""
+
+
+
+
+
+    var languagestring = ""
+    var languagestring1 = ""
+    var languagestring2 = ""
+    var languagestring3 = ""
+    var languagestring4 = ""
+    var languagestring5 = ""
+    var languagestring6 = ""
+    var languagestring7 = ""
+    var languagestring8 = ""
+    var languagestring9 = ""
+
+
+
+
+    // alert("working")
+    let fetchRes = fetch(
+      "https://api.github.com/users/karthikarnm");
+
+
+    fetchRes.then(res =>
+      res.json()).then(d => {
+        console.log(d)
+
+        htmlString += d.login,
+          htmlString1 += d.bio,
+          htmlString2 += d.html_url;
+
+        data.innerHTML = htmlString;
+        data1.innerHTML = htmlString1;
+        data2.innerHTML = htmlString2;
+
+      })
+
+    let fetchs = fetch(
+      "https://api.github.com/users/karthikarnm/repos");
+
+
+    fetchs.then(res =>
+      res.json()).then(d => {
+        console.log(d)
+
+        repostring += d[0].name + "<br>" + d[0].description + "<br>",
+          languagestring += d[0].language
+
+        repostring1 += d[1].name + "<br>" + d[1].description + "<br>",
+          languagestring1 += d[1].language
+
+        repostring2 += d[2].name + "<br>" + d[2].description + "<br>",
+          languagestring2 += d[2].language
+
+        repostring3 += d[3].name + "<br>" + d[3].description + "<br>",
+          languagestring3 += d[3].language
+
+        repostring4 += d[4].name + "<br>" + d[4].description4 + "<br>",
+          languagestring4 += d[4].language
+
+        repostring5 += d[5].name + "<br>" + d[5].description,
+          languagestring5 += d[5].language
+
+        repostring6 += d[6].name + "<br>" + d[6].description,
+          languagestring6 += d[6].language
+
+        repostring7 += d[7].name + "<br>" + d[7].description,
+          languagestring7 += d[7].language
+
+        repostring8 += d[8].name + "<br>" + d[8].description,
+          languagestring8 += d[8].language
+
+
+        repostring9 += d[9].name + "<br>" + d[9].description,
+          languagestring9 += d[9].language
+
+        // repostring10 +=  d[10].name + "<br>" + d[10].id ,
+        // languagestring10 += d[10].language
+
+
+
+        repost.innerHTML = repostring
+        language.innerHTML = languagestring
+
+        repost1.innerHTML = repostring1
+        language1.innerHTML = languagestring1
+
+        repost2.innerHTML = repostring2
+        language2.innerHTML = languagestring2
+
+        repost3.innerHTML = repostring3
+        language3.innerHTML = languagestring3
+
+        repost4.innerHTML = repostring4
+        language4.innerHTML = languagestring4
+
+        repost5.innerHTML = repostring5
+        language5.innerHTML = languagestring5
+
+        repost6.innerHTML = repostring6
+        language6.innerHTML = languagestring6
+
+        repost7.innerHTML = repostring7
+        language7.innerHTML = languagestring7
+
+        repost8.innerHTML = repostring8
+        language8.innerHTML = languagestring8
+
+        repost9.innerHTML = repostring9
+        language9.innerHTML = languagestring9
+      })
+
+  }
+</script>
+
+</html>
