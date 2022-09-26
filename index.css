@@ -97,7 +97,7 @@ h1 {
   display: flex;
   align-items: center;
   position: absolute;
-  bottom: 80px;
+  bottom: 0px;
   left: 395px;
   padding: 1rem 0;
   justify-content: center;
