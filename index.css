@@ -93,7 +93,7 @@ h1 {
 }
 
 .pagination-container {
-  width:50%;
+  width:100%;
   display: flex;
   align-items: center;
   position: absolute;
